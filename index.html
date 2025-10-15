@@ -1,22 +1,65 @@
-import Web3 from "web3";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PBR Token Interface</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.8.2/dist/web3.min.js"></script>
+  <style>
+    body {
+      background-color: #0f172a;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .connect { background-color: #3b82f6; color: white; }
+    .transfer { background-color: #2563eb; color: white; }
+    .approve { background-color: #f59e0b; color: white; }
+    .burn { background-color: #ef4444; color: white; }
+  </style>
+</head>
+<body>
+  <h1>PBR Token</h1>
+  <button class="connect" onclick="connectWallet()">Connect Wallet</button>
+  <p id="contractAddress">Contract: 0x0D6ae2a429df13e44A07Cd2969E085e4833f64A0</p>
+  <p id="balance">Your Balance: -- PBR</p>
+  <button class="transfer" onclick="transferTokens()">Transfer Tokens</button>
+  <button class="approve" onclick="approveSpending()">Approve Spending</button>
+  <button class="burn" onclick="burnTokens()">Burn Tokens</button>
 
-// Configuration for BSC Mainnet
-const pbrMaticTokenConstant = {
-  rpcUrl: "https://bsc-dataseed.binance.org/",
-  chainId: 56, // Correct chain ID for BSC Mainnet
-  contractAddress: "0x0D6ae2a429df13e44A07Cd2969E085e4833f64A0",
-  abi: [
-    // ABI remains unchanged — already included in your code
-  ],
-};
+  <script>
+    async function connectWallet() {
+      if (window.ethereum) {
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+        const accounts = await window.ethereum.request({ method: "eth_accounts" });
+        const userAddress = accounts[0];
+        document.getElementById("balance").innerText = "Your Balance: (connected)";
+        alert("Wallet connected: " + userAddress);
+      } else {
+        alert("Please install MetaMask!");
+      }
+    }
 
-// Initialize Web3 with BSC RPC
-const web3 = new Web3(pbrMaticTokenConstant.rpcUrl);
+    function transferTokens() {
+      alert("Transfer function triggered");
+    }
 
-// Create contract instance
-const pbrMaticTokenContract = new web3.eth.Contract(
-  pbrMaticTokenConstant.abi,
-  pbrMaticTokenConstant.contractAddress
-);
+    function approveSpending() {
+      alert("Approve function triggered");
+    }
 
-export default pbrMaticTokenContract;
+    function burnTokens() {
+      alert("Burn function triggered");
+    }
+  </script>
+</body>
+  </html>
