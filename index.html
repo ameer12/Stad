@@ -1,0 +1,22 @@
+import Web3 from "web3";
+
+// Configuration for BSC Mainnet
+const pbrMaticTokenConstant = {
+  rpcUrl: "https://bsc-dataseed.binance.org/",
+  chainId: 56, // Correct chain ID for BSC Mainnet
+  contractAddress: "0x0D6ae2a429df13e44A07Cd2969E085e4833f64A0",
+  abi: [
+    // ABI remains unchanged — already included in your code
+  ],
+};
+
+// Initialize Web3 with BSC RPC
+const web3 = new Web3(pbrMaticTokenConstant.rpcUrl);
+
+// Create contract instance
+const pbrMaticTokenContract = new web3.eth.Contract(
+  pbrMaticTokenConstant.abi,
+  pbrMaticTokenConstant.contractAddress
+);
+
+export default pbrMaticTokenContract;
